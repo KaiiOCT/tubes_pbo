@@ -4,40 +4,69 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
 abstract class Laptop {
     protected int id;
     protected String nama;
-    protected int kategori;
+    protected int prosesor;
+    protected String deskripsi;
+    protected int hargaSewa;
+    protected int idStatus;
 
-    public Laptop(int id, String nama, int kategori) {
+    public Laptop(int id, String nama, int prosesor, String deskripsi, int hargaSewa, int idStatus) {
         this.id = id;
         this.nama = nama;
-        this.kategori = kategori;
+        this.prosesor = prosesor;
+        this.deskripsi = deskripsi;
+        this.hargaSewa = hargaSewa;
+        this.idStatus = idStatus;
     }
 
     public int getId() {
-        return this.id;
+        return id;
     }
 
     public String getNama() {
-        return this.nama;
+        return nama;
     }
 
-    public int getKategori() {
-        return this.kategori;
+    public int getProsesor() {
+        return prosesor;
     }
 
-    public int setId(int id) {
-        return this.id = id;
+    public String getDeskripsi() {
+        return deskripsi;
     }
 
-    public String setNama(String nama) {
-        return this.nama = nama;
+    public int getHargaSewa() {
+        return hargaSewa;
     }
 
-    public int setKategori(int kategori) {
-        return this.kategori = kategori;
+    public int getIdStatus() {
+        return idStatus;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public void setProsesor(int prosesor) {
+        this.prosesor = prosesor;
+    }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
+
+    public void setHargaSewa(int hargaSewa) {
+        this.hargaSewa = hargaSewa;
+    }
+
+    public void setIdStatus(int idStatus) {
+        this.idStatus = idStatus;
     }
 
     public abstract boolean updateLaptop();
@@ -47,77 +76,51 @@ class ManageLaptop extends Laptop {
     private Connection conn;
     private final Koneksi k = new Koneksi();
 
-    public ManageLaptop(int id, String nama, int kategori) {
-        super(id, nama, kategori);
+    public ManageLaptop(int id, String nama, int prosesor, String deskripsi, int hargaSewa, int idStatus) {
+        super(id, nama, prosesor, deskripsi, hargaSewa, idStatus);
     }
 
     // Insert Laptop
     public boolean insertLaptop() {
         try {
-            conn = k.getConnection();
-            String query = "INSERT INTO laptop(nama, os) VALUES (?,?)";
+        conn = k.getConnection();
+            String query = "INSERT INTO laptop (nama, prosesor, deskripsi, harga_sewa, status) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(query);
 
-            ps.setString(1, getNama());
-            ps.setInt(2, getKategori());
+            ps.setString(1, nama);
+            ps.setInt(2, prosesor);
+            ps.setString(3, deskripsi);
+            ps.setInt(4, hargaSewa);
+            ps.setInt(5, idStatus);
 
-            int rowAffected = ps.executeUpdate();
-
-            return rowAffected == 1;
-
+            ps.executeUpdate();
+            return true;
         } catch (SQLException e) {
+            System.out.println("Gagal insert data laptop: " + e.getMessage());
             return false;
         }
     }
 
-    // update Laptop
+    // Update Laptop
     @Override
     public boolean updateLaptop() {
-        try{
-            conn = k.getConnection();
-            String query = "UPDATE laptop SET nama = ?, os = ? WHERE id = ?";
-            PreparedStatement ps = conn.prepareStatement(query);
-
-            if(id == getId()){
-                ps.setString(1, this.nama);
-                ps.setInt(2, this.kategori);
-                ps.setInt(3, this.id);
-
-                ps.executeUpdate();
-
-                return true;
-            } else {
-                System.out.println("ID tidak ditemukan");
-                return false;
-            }
-        } catch (SQLException e) {
-            System.err.println("Gagal update laptop: " + e.getMessage());
-            return false;
-        }
-    }
-
-    // Delete Laptop
-    public boolean deleteLaptop() {
         try {
             conn = k.getConnection();
-            String query = "DELETE FROM laptop WHERE id = ?";
+            String query = "UPDATE laptop SET nama = ?, prosesor = ?, deskripsi = ?, harga_sewa = ?, status = ? WHERE id = ?";
             PreparedStatement ps = conn.prepareStatement(query);
 
-            ps.setInt(1, this.getId());
+            ps.setString(1, nama);
+            ps.setInt(2, prosesor);
+            ps.setString(3, deskripsi);
+            ps.setInt(4, hargaSewa);
+            ps.setInt(5, idStatus);
+            ps.setInt(6, id);
 
-            int rowAffected = ps.executeUpdate();
-
-            System.out.println(this.getId());
-            return rowAffected == 1;
-
+            ps.executeUpdate();
+            return true;
         } catch (SQLException e) {
-            System.err.println("Gagal delete laptop: " + e.getMessage());
+            System.out.println("Gagal update data laptop: " + e.getMessage());
             return false;
         }
-    }
-
-    public static void main(String[] args) {
-        ManageLaptop laptop = new ManageLaptop(9, "berman abraham", 2);
-//        laptop.updateLaptop(9, "abraham ngok ngok", 2);
     }
 }
