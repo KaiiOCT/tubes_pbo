@@ -16,7 +16,7 @@ public class FrameCRUD extends javax.swing.JFrame {
      * Creates new form FrameCRUD
      */
     private ManageLaptop manageLaptop;
-    private final DefaultTableModel model = new DefaultTableModel(new Object[]{"ID", "Nama Laptop", "Kategori OS"}, 0);
+    private final DefaultTableModel model = new DefaultTableModel(new Object[]{"ID", "Nama Laptop", "Kategori Prosesor", "Deskripsi", "Harga Sewa", "Status"}, 0);
     private int selectedLaptopId = 0;
 
 
@@ -24,6 +24,7 @@ public class FrameCRUD extends javax.swing.JFrame {
 
         initComponents();
         KategoriLaptop();
+        KategoriStatus();
 
         // Set model dan disable kolom ID
         TableLaptop.setModel(model);
@@ -46,7 +47,7 @@ public class FrameCRUD extends javax.swing.JFrame {
 
         labelcrud = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        labelKategori = new javax.swing.JLabel();
         FormNamaLaptop = new javax.swing.JTextField();
         KategoriBox = new javax.swing.JComboBox<>();
         btnCreate = new javax.swing.JButton();
@@ -57,14 +58,23 @@ public class FrameCRUD extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableLaptop = new javax.swing.JTable();
+        labelDeskripsi = new javax.swing.JLabel();
+        labelHargaSewa = new javax.swing.JLabel();
+        labelStatus = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        FormDeskripsi = new javax.swing.JTextArea();
+        FormHargaSewa = new javax.swing.JTextField();
+        FormStatus = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
+        labelcrud.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelcrud.setText("CRUD Laptop");
 
         jLabel1.setText("Nama Laptop :");
 
-        jLabel2.setText("Kategori :");
+        labelKategori.setText("Kategori :");
 
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -108,13 +118,13 @@ public class FrameCRUD extends javax.swing.JFrame {
 
         TableLaptop.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nama", "Kategori OS"
+                "ID", "Nama", "Kategori Prosesor", "Deskripsi", "Harga Sewa", "Status"
             }
         ));
         TableLaptop.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -124,61 +134,115 @@ public class FrameCRUD extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TableLaptop);
 
+        labelDeskripsi.setText("Deskripsi :");
+
+        labelHargaSewa.setText("Harga Sewa :");
+
+        labelStatus.setText("Status :");
+
+        FormDeskripsi.setColumns(20);
+        FormDeskripsi.setRows(5);
+        FormDeskripsi.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                FormDeskripsiAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane2.setViewportView(FormDeskripsi);
+
+        FormHargaSewa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FormHargaSewaActionPerformed(evt);
+            }
+        });
+
+        FormStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FormStatusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(327, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelcrud)
-                .addGap(313, 313, 313))
+                .addGap(300, 300, 300))
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(102, 102, 102)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(labelDeskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(FormNamaLaptop)
-                    .addComponent(KategoriBox, 0, 182, Short.MAX_VALUE))
-                .addContainerGap(415, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(FormNamaLaptop)
+                            .addComponent(KategoriBox, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelHargaSewa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(FormHargaSewa)
+                            .addComponent(FormStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(63, 63, 63)
                 .addComponent(btnCreate)
                 .addGap(18, 18, 18)
                 .addComponent(btnUpdate)
                 .addGap(18, 18, 18)
                 .addComponent(btnDelete)
-                .addGap(53, 53, 53)
-                .addComponent(FormSearch)
-                .addGap(18, 18, 18)
-                .addComponent(btnSearch)
-                .addGap(26, 26, 26)
-                .addComponent(FilterLaptopBox, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
-            .addComponent(jScrollPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(FormSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSearch))
+                    .addComponent(FilterLaptopBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(120, 120, 120))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(labelcrud)
-                .addGap(57, 57, 57)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(FormNamaLaptop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FormNamaLaptop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelHargaSewa)
+                    .addComponent(FormHargaSewa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(KategoriBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
+                    .addComponent(labelKategori)
+                    .addComponent(KategoriBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelStatus)
+                    .addComponent(FormStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelDeskripsi)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreate)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete)
                     .addComponent(FormSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FilterLaptopBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(FilterLaptopBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -189,12 +253,15 @@ public class FrameCRUD extends javax.swing.JFrame {
         try {
             String nama = FormNamaLaptop.getText();
             int kategori = KategoriBox.getSelectedIndex();
+            String deskripsi = FormDeskripsi.getText();
+            int hargaSewa = Integer.parseInt(FormHargaSewa.getText());
+            int status = FormStatus.getSelectedIndex();
 
             if (kategori == 0) {
                 System.out.println("Kategori harus dipilih");
             } else {
 
-                manageLaptop = new ManageLaptop(0, nama, kategori);
+                manageLaptop = new ManageLaptop(0, nama, kategori, deskripsi, hargaSewa, status);
 
                 if (manageLaptop.insertLaptop()) {
                     System.out.println("Laptop berhasil disimpan!");
@@ -219,7 +286,7 @@ public class FrameCRUD extends javax.swing.JFrame {
             model.setRowCount(0); // Hapus semua data dari tabel
             try {
                 Connection conn = new Koneksi().getConnection();
-                String query = "SELECT l.id, l.nama, k.kategori_os FROM laptop l JOIN kategori k ON l.os = k.id WHERE k.kategori_os = ? ORDER BY l.id DESC";
+                String query = "SELECT l.id, l.nama, k.kategori_prosesor, l.deskripsi, l.harga_sewa, p.status_sewa FROM laptop l JOIN kategori k ON l.prosesor = k.id JOIN penyewaan p ON l.status = p.id WHERE k.kategori_prosesor = ? ORDER BY l.id DESC";
                 PreparedStatement ps = conn.prepareStatement(query);
                 ps.setString(1, selectedCategory);
 
@@ -227,10 +294,12 @@ public class FrameCRUD extends javax.swing.JFrame {
                 while (rs.next()) {
                     int idLaptop = rs.getInt("id");
                     String namaLaptop = rs.getString("nama");
-                    String kategoriOS = rs.getString("kategori_os");
-                    model.addRow(new Object[]{idLaptop, namaLaptop, kategoriOS});
+                    String kategoriOS = rs.getString("kategori_prosesor");
+                    String deskripsi = rs.getString("deskripsi");
+                    int hargaSewa = rs.getInt("harga_sewa");
+                    String status = rs.getString("status_sewa");
+                    model.addRow(new Object[]{idLaptop, namaLaptop, kategoriOS, deskripsi, hargaSewa, status});
                 }
-
                 conn.close();
             } catch (SQLException e) {
                 System.err.println("Gagal memuat data laptop berdasarkan kategori: " + e.getMessage());
@@ -241,8 +310,7 @@ public class FrameCRUD extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         manageLaptop.setId(selectedLaptopId);
 
-        boolean isDeleted = manageLaptop.deleteLaptop();
-        if (isDeleted) {
+        if (manageLaptop.deleteLaptop()) {
             System.out.println("Laptop berhasil dihapus!");
             model.setRowCount(0);  // Menghapus semua baris dari model
             ReadLaptop();  // Memuat ulang data laptop ke dalam tabel
@@ -257,11 +325,17 @@ public class FrameCRUD extends javax.swing.JFrame {
         Object selectedLaptopIdObject = TableLaptop.getValueAt(row, 0);
         selectedLaptopId = (int) selectedLaptopIdObject;
         String namaLaptop = (String) TableLaptop.getValueAt(row, 1); // Nama Laptop
-        String kategoriOS = (String) TableLaptop.getValueAt(row, 2); // Kategori OS
+        String kateogriProsesor = (String) TableLaptop.getValueAt(row, 2); // Kategori OS
+        String deskripsi = (String) TableLaptop.getValueAt(row, 3); // Deskripsi
+        int hargaSewa = (int) TableLaptop.getValueAt(row, 4); // Harga Sewa
+        String status = (String) TableLaptop.getValueAt(row, 5); // Status
 
         // Tampilkan data ke form
         FormNamaLaptop.setText(namaLaptop);
-        KategoriBox.setSelectedItem(kategoriOS);
+        KategoriBox.setSelectedItem(kateogriProsesor);
+        FormDeskripsi.setText(deskripsi);
+        FormHargaSewa.setText(String.valueOf(hargaSewa));
+        FormStatus.setSelectedItem(status);
         System.out.println("ID Laptop yang dipilih: " + selectedLaptopIdObject);
 
     }//GEN-LAST:event_TableLaptopMouseClicked
@@ -271,6 +345,9 @@ public class FrameCRUD extends javax.swing.JFrame {
             // Ambil data dari form
             String namaLaptop = FormNamaLaptop.getText();
             int kategoriIndex = KategoriBox.getSelectedIndex();
+            String deskripsi = FormDeskripsi.getText();
+            int hargaSewa = Integer.parseInt(FormHargaSewa.getText());
+            int status = FormStatus.getSelectedIndex();
 
             // Validasi input
             if (selectedLaptopId == 0) {
@@ -284,10 +361,9 @@ public class FrameCRUD extends javax.swing.JFrame {
             }
 
             // Update data laptop
-            manageLaptop = new ManageLaptop(selectedLaptopId, namaLaptop, kategoriIndex);
-            boolean isUpdated = manageLaptop.updateLaptop();
+            manageLaptop = new ManageLaptop (selectedLaptopId, namaLaptop, kategoriIndex, deskripsi, hargaSewa, status);
 
-            if (isUpdated) {
+            if (manageLaptop.updateLaptop()) {
                 System.out.println("Laptop berhasil diperbarui!");
                 model.setRowCount(0);
                 ReadLaptop();
@@ -312,7 +388,7 @@ public class FrameCRUD extends javax.swing.JFrame {
             Connection conn = new Koneksi().getConnection();
 
             // Query untuk pencarian berdasarkan nama laptop
-            String query = "SELECT l.id, l.nama, k.kategori_os FROM laptop l JOIN kategori k ON l.os = k.id WHERE l.nama LIKE ? ORDER BY l.id DESC";
+            String query = "SELECT l.id, l.nama, k.kategori_prosesor, l.deskripsi, l.harga_sewa, p.status_sewa FROM laptop l JOIN kategori k ON l.prosesor = k.id JOIN penyewaan p ON l.status = p.id WHERE l.nama LIKE ? ORDER BY l.id DESC";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, "%" + searchLaptop + "%");
 
@@ -320,8 +396,11 @@ public class FrameCRUD extends javax.swing.JFrame {
             while (rs.next()) {
                 int idLaptop = rs.getInt("id");
                 String namaLaptop = rs.getString("nama");
-                String kategoriOS = rs.getString("kategori_os");
-                model.addRow(new Object[]{idLaptop, namaLaptop, kategoriOS});
+                String kategoriProsesor = rs.getString("kategori_prosesor");
+                String deskripsi = rs.getString("deskripsi");
+                int hargaSewa = rs.getInt("harga_sewa");
+                String status = rs.getString("status_sewa");
+                model.addRow(new Object[]{idLaptop, namaLaptop, kategoriProsesor, deskripsi, hargaSewa, status});
             }
 
             conn.close();
@@ -330,11 +409,23 @@ public class FrameCRUD extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void FormHargaSewaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormHargaSewaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FormHargaSewaActionPerformed
+
+    private void FormDeskripsiAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_FormDeskripsiAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FormDeskripsiAncestorAdded
+
+    private void FormStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FormStatusActionPerformed
+
 
     private void ReadLaptop() {
         try {
             Connection conn = new Koneksi().getConnection();
-            String query = "SELECT l.id, l.nama, k.kategori_os FROM laptop l JOIN kategori k ON l.os = k.id ORDER BY l.id DESC";
+            String query = "SELECT l.id, l.nama, k.kategori_prosesor, l.deskripsi, l.harga_sewa, p.status_sewa FROM laptop l JOIN kategori k ON l.prosesor = k.id JOIN penyewaan p ON l.status = p.id ORDER BY l.id DESC";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
@@ -343,10 +434,12 @@ public class FrameCRUD extends javax.swing.JFrame {
             while (rs.next()) {
                 int idLaptop = rs.getInt("id");
                 String namaLaptop = rs.getString("nama");
-                String kategoriOS = rs.getString("kategori_os");
-                model.addRow(new Object[]{idLaptop, namaLaptop, kategoriOS});
+                String kategoriOS = rs.getString("kategori_prosesor");
+                String deskripsi = rs.getString("deskripsi");
+                int hargaSewa = rs.getInt("harga_sewa");
+                String status = rs.getString("status_sewa");
+                model.addRow(new Object[]{idLaptop, namaLaptop, kategoriOS, deskripsi, hargaSewa, status});
             }
-
             conn.close();
         } catch (SQLException e) {
             System.err.println("Gagal memuat data laptop: " + e.getMessage());
@@ -359,18 +452,38 @@ public class FrameCRUD extends javax.swing.JFrame {
 
         try {
             Connection conn = new Koneksi().getConnection();
-            String query = "SELECT kategori_os FROM kategori";
+            String query = "SELECT kategori_prosesor FROM kategori";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
-                KategoriBox.addItem(rs.getString("kategori_os"));
-                FilterLaptopBox.addItem(rs.getString("kategori_os"));
+                KategoriBox.addItem(rs.getString("kategori_prosesor"));
+                FilterLaptopBox.addItem(rs.getString("kategori_prosesor"));
             }
 
             conn.close();
         } catch (SQLException e) {
             System.err.println("Gagal memuat kategori: " + e.getMessage());
+        }
+    }
+
+    private void KategoriStatus() {
+        FormStatus.removeAllItems();
+        FormStatus.addItem("Pilih Status");
+
+        try {
+            Connection conn = new Koneksi().getConnection();
+            String query = "SELECT status_sewa FROM penyewaan";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                FormStatus.addItem(rs.getString("status_sewa"));
+            }
+
+            conn.close();
+        } catch (SQLException e) {
+            System.err.println("Gagal memuat status: " + e.getMessage());
         }
     }
 
@@ -411,8 +524,11 @@ public class FrameCRUD extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> FilterLaptopBox;
+    private javax.swing.JTextArea FormDeskripsi;
+    private javax.swing.JTextField FormHargaSewa;
     private javax.swing.JTextField FormNamaLaptop;
     private javax.swing.JTextField FormSearch;
+    private javax.swing.JComboBox<String> FormStatus;
     private javax.swing.JComboBox<String> KategoriBox;
     private javax.swing.JTable TableLaptop;
     private javax.swing.JButton btnCreate;
@@ -420,8 +536,12 @@ public class FrameCRUD extends javax.swing.JFrame {
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelDeskripsi;
+    private javax.swing.JLabel labelHargaSewa;
+    private javax.swing.JLabel labelKategori;
+    private javax.swing.JLabel labelStatus;
     private javax.swing.JLabel labelcrud;
     // End of variables declaration//GEN-END:variables
 }
