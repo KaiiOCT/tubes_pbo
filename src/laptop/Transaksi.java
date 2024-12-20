@@ -1,0 +1,5 @@
+package laptop;
+
+class Penyewaan {
+    
+}
