@@ -212,6 +212,7 @@ public class FrameTransaksi extends javax.swing.JFrame {
             }
 
             if (transaksi.updateTransaksi()) {
+                transaksi.updateTransaksi();
                 try {
                     Connection conn = k.getConnection();
                     String query = """
