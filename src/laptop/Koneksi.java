@@ -20,4 +20,19 @@ public class Koneksi {
 
         return conn;
     }
+    
+    public static void main(String[] args) {
+        Koneksi koneksi = new Koneksi();
+        
+        try (Connection conn = koneksi.getConnection()) {
+            if (conn != null) {
+                System.out.println("Koneksi ke database berhasil!");
+            }
+        } catch (SQLException e) {
+            System.err.println("Gagal terhubung ke database: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }
+
+
