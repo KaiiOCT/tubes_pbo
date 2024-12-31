@@ -17,6 +17,11 @@ abstract class Laptop {
         this.deskripsi = deskripsi;
     }
 
+    public Laptop(int id, String nama) {
+        this.id = id;
+        this.nama = nama;
+    }
+
     public int getId() {
         return id;
     }
@@ -53,8 +58,8 @@ abstract class Laptop {
 }
 
 class ManageLaptop extends Laptop {
-    protected int hargaSewa;
-    protected int idStatus;
+    private int hargaSewa;
+    private int idStatus;
 
     private Connection conn;
     private final Koneksi k = new Koneksi();
@@ -63,6 +68,10 @@ class ManageLaptop extends Laptop {
         super(id, nama, prosesor, deskripsi);
         this.hargaSewa = hargaSewa;
         this.idStatus = idStatus;
+    }
+
+    public ManageLaptop(int id, String nama) {
+        super(id, nama);
     }
 
     public int getHargaSewa() {
@@ -140,5 +149,10 @@ class ManageLaptop extends Laptop {
             System.out.println("Gagal delete data laptop: " + e.getMessage());
             return false;
         }
+    }
+
+    @Override
+    public String toString() {
+        return this.getNama(); // Sesuaikan dengan nama field untuk nama laptop
     }
 }

@@ -4,13 +4,12 @@
  */
 package laptop;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.sql.PreparedStatement;
 
@@ -21,25 +20,29 @@ import java.sql.PreparedStatement;
 public class FrameTransaksi extends javax.swing.JFrame {
 
     private final DefaultTableModel model = new DefaultTableModel(new Object[]{"ID", "Nama Laptop", "Tanggal Sewa", "Tanggal Pengembalian", "Harga Sewa", "ID Laptop"}, 0);
+    private final DefaultComboBoxModel<ManageLaptop> modelList = new DefaultComboBoxModel<>();
     private Transaksi transaksi;
     private static final Koneksi k = new Koneksi();
     private int selectedIdTransaksi = 0;
     private int selectedIdLaptop = 0;
     private String selectNamaLaptop = "";
     private Integer laptopId = 0;
+    private ManageLaptop pilihLaptop = new ManageLaptop(0, "Pilih Laptop");
 
     /**
      * Creates new form FrameTransaksi
      */
     public FrameTransaksi() {
         initComponents();
-        DaftarLaptop();
 
+        listLaptop.setModel(modelList);
+        //listLaptop.getModel().getElementAt(0);
         tableTransaksi.setModel(model);
         tableTransaksi.getColumnModel().getColumn(0).setMinWidth(0);
         tableTransaksi.getColumnModel().getColumn(0).setMaxWidth(0);
         tableTransaksi.getColumnModel().getColumn(0).setWidth(0);
         ReadTransaksi();
+        DaftarLaptop();
     }
 
     /**
@@ -57,7 +60,7 @@ public class FrameTransaksi extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         inputTanggalSewa = new com.toedter.calendar.JDateChooser();
         inputTanggalKembali = new com.toedter.calendar.JDateChooser();
-        listLaptop = new javax.swing.JComboBox<>();
+        listLaptop = new javax.swing.JComboBox<>(modelList);
         createButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
@@ -186,97 +189,112 @@ public class FrameTransaksi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        try {
-            com.toedter.calendar.JDateChooser tanggalSewa = inputTanggalSewa;
-            com.toedter.calendar.JDateChooser tanggalKembali = inputTanggalKembali;
-
-            transaksi = new Transaksi(selectedIdTransaksi, tanggalSewa, tanggalKembali, laptopId);
+        ManageLaptop selectedItem = (ManageLaptop) listLaptop.getSelectedItem();
+        if (selectedItem != null && selectedItem != pilihLaptop) {
             try {
-                Connection conn = k.getConnection();
-                String queryLama = """
-                    UPDATE laptop
-                    SET status = ?
-                    WHERE id = ?
-                """;
+                com.toedter.calendar.JDateChooser tanggalSewa = inputTanggalSewa;
+                com.toedter.calendar.JDateChooser tanggalKembali = inputTanggalKembali;
 
-                PreparedStatement pslama = conn.prepareStatement(queryLama);
-
-                pslama.setInt(1, 1);
-                pslama.setInt(2, selectedIdLaptop);
-
-                pslama.executeUpdate();
-                model.setRowCount(0);  // Menghapus semua baris dari model
-                ReadTransaksi();  // Memuat ulang data transaksi ke dalam tabel
-            } catch (SQLException e) {
-                System.out.println("Gagal update status laptop: " + e.getMessage());
-            }
-
-            if (transaksi.updateTransaksi()) {
-                transaksi.updateTransaksi();
+                transaksi = new Transaksi(selectedIdTransaksi, tanggalSewa, tanggalKembali, selectedItem.getId());
                 try {
                     Connection conn = k.getConnection();
-                    String query = """
-                    UPDATE laptop
-                    SET status = ?
-                    WHERE id = ?
-                """;
+                    String queryLama = """
+                                UPDATE laptop
+                                SET status = ?
+                                WHERE id = ?
+                            """;
 
-                    PreparedStatement ps = conn.prepareStatement(query);
+                    PreparedStatement pslama = conn.prepareStatement(queryLama);
 
-                    ps.setInt(1, 2);
-                    ps.setInt(2, transaksi.getIdLaptop());
+                    pslama.setInt(1, 1);
+                    pslama.setInt(2, selectedIdLaptop);
 
-                    ps.executeUpdate();
-
+                    pslama.executeUpdate();
                     model.setRowCount(0);  // Menghapus semua baris dari model
                     ReadTransaksi();  // Memuat ulang data transaksi ke dalam tabel
                 } catch (SQLException e) {
                     System.out.println("Gagal update status laptop: " + e.getMessage());
                 }
-                System.out.println("Transaksi berhasil disimpan!");
-            } else {
-                System.err.println("Transaksi gagal disimpan!");
+                if (transaksi.updateTransaksi()) {
+                    //transaksi.updateTransaksi();
+                    try {
+                        Connection conn = k.getConnection();
+                        String query = """
+                                    UPDATE laptop
+                                    SET status = ?
+                                    WHERE id = ?
+                                """;
+
+                        PreparedStatement ps = conn.prepareStatement(query);
+
+                        ps.setInt(1, 2);
+                        ps.setInt(2, transaksi.getIdLaptop());
+
+                        ps.executeUpdate();
+
+
+                        model.setRowCount(0);  // Menghapus semua baris dari model
+                        ReadTransaksi();  // Memuat ulang data transaksi ke dalam tabel
+                        //listLaptop.removeAllItems();;
+                        modelList.removeAllElements();
+                        DaftarLaptop();
+                    } catch (SQLException e) {
+                        System.out.println("Gagal update status laptop: " + e.getMessage());
+                    }
+                    System.out.println("Transaksi berhasil disimpan!");
+                } else {
+                    System.err.println("Transaksi gagal disimpan!");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Tidak ada laptop yang dipilih!");
+                System.err.println("Error: " + e.getMessage());
             }
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        try {
-            com.toedter.calendar.JDateChooser tanggalSewa = inputTanggalSewa;
-            com.toedter.calendar.JDateChooser tanggalKembali = inputTanggalKembali;
-            int laptop = listLaptop.getSelectedIndex();
+        //String selectedItem = (String) listLaptop.getSelectedItem();
+        ManageLaptop selectedItem = (ManageLaptop) listLaptop.getSelectedItem();
+        if (selectedItem != null && selectedItem != pilihLaptop) {
+            try {
+                com.toedter.calendar.JDateChooser tanggalSewa = inputTanggalSewa;
+                com.toedter.calendar.JDateChooser tanggalKembali = inputTanggalKembali;
+                //int laptop = (Integer) listLaptop.getClientProperty(selectNamaLaptop);
 
-            transaksi = new Transaksi(0, tanggalSewa, tanggalKembali, laptop);
+                transaksi = new Transaksi(0, tanggalSewa, tanggalKembali, selectedItem.getId());
 
-            if (transaksi.insertTransaksi()) {
-                try {
-                    Connection conn = k.getConnection();
-                    String query = """
-                    UPDATE laptop
-                    SET status = ?
-                    WHERE id = ?
-                """;
+                if (transaksi.insertTransaksi()) {
+                    try {
+                        Connection conn = k.getConnection();
+                        String query = """
+                                    UPDATE laptop
+                                    SET status = ?
+                                    WHERE id = ?
+                                """;
 
-                    PreparedStatement ps = conn.prepareStatement(query);
+                        PreparedStatement ps = conn.prepareStatement(query);
 
-                    ps.setInt(1, 2);
-                    ps.setInt(2, transaksi.getIdLaptop());
+                        ps.setInt(1, 2);
+                        ps.setInt(2, transaksi.getIdLaptop());
 
-                    ps.executeUpdate();
-                    model.setRowCount(0);  // Menghapus semua baris dari model
-                    ReadTransaksi();  // Memuat ulang data transaksi ke dalam tabel
-                } catch (SQLException e) {
-                    System.out.println("Gagal update status laptop: " + e.getMessage());
+                        ps.executeUpdate();
+                        model.setRowCount(0);  // Menghapus semua baris dari model
+                        ReadTransaksi();  // Memuat ulang data transaksi ke dalam tabel
+                        //modelList.removeAllElements();
+                        //listLaptop.removeAllItems();
+                        DaftarLaptop();
+                        System.out.println("Transaksi berhasil disimpan!");
+                    } catch (SQLException e) {
+                        System.out.println("Gagal update status laptop: " + e.getMessage());
+                    }
+                } else {
+                    System.err.println("Transaksi gagal disimpan!");
                 }
-                System.out.println("Transaksi berhasil disimpan!");
-            } else {
-                System.err.println("Transaksi gagal disimpan!");
+            } catch (Exception e) {
+                System.err.println("Error a: " + e.getMessage());
             }
-
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(this, "Tidak ada laptop yang dipilih!");
         }
     }//GEN-LAST:event_createButtonActionPerformed
 
@@ -295,15 +313,17 @@ public class FrameTransaksi extends javax.swing.JFrame {
                 PreparedStatement ps = conn.prepareStatement(query);
 
                 ps.setInt(1, 3);
-                ps.setInt(2, transaksi.getIdLaptop());
+                ps.setInt(2, selectedIdLaptop);
 
                 ps.executeUpdate();
+
+                System.out.println("Transaksi berhasil dihapus!");
+                model.setRowCount(0);  // Menghapus semua baris dari model
+                ReadTransaksi();  // Memuat ulang data transaksi ke dalam tabel
+                DaftarLaptop();
             } catch (SQLException e) {
                 System.out.println("Gagal update status laptop: " + e.getMessage());
             }
-            System.out.println("Transaksi berhasil dihapus!");
-            model.setRowCount(0);  // Menghapus semua baris dari model
-            ReadTransaksi();  // Memuat ulang data transaksi ke dalam tabel
         } else {
             System.out.println("Gagal menghapus transaksi.");
         }
@@ -364,8 +384,12 @@ public class FrameTransaksi extends javax.swing.JFrame {
     }
 
     private void DaftarLaptop() {
-        listLaptop.removeAllItems();
-        listLaptop.addItem("Pilih Laptop");
+        //listLaptop.removeAllItems();
+        //listLaptop.addItem("Pilih Laptop");
+        modelList.removeAllElements();
+        modelList.addElement(pilihLaptop);
+        //modelList.addElement();
+        //listLaptop.addItem("Pilih Laptop");
 
         try {
             Connection conn = new Koneksi().getConnection();
@@ -376,8 +400,9 @@ public class FrameTransaksi extends javax.swing.JFrame {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String nama = rs.getString("nama");
-                listLaptop.addItem(nama);
-                listLaptop.putClientProperty(nama, id);
+                modelList.addElement(new ManageLaptop(id, nama));
+                //listLaptop.addItem(nama);
+                //listLaptop.putClientProperty(nama, id);
             }
 
         } catch (SQLException e) {
@@ -385,12 +410,18 @@ public class FrameTransaksi extends javax.swing.JFrame {
         }
 
         listLaptop.addActionListener(evt -> {
-            selectNamaLaptop = (String) listLaptop.getSelectedItem();
-            laptopId = (Integer) listLaptop.getClientProperty(selectNamaLaptop);
+            ManageLaptop selectedLaptop = (ManageLaptop) modelList.getSelectedItem();
+            if (selectedLaptop != null) {
+                String selectNamaLaptop = selectedLaptop.getNama();
+                int laptopId = selectedLaptop.getId();
+                System.out.println("Item selected in combobox: " + selectNamaLaptop);
+                System.out.println(laptopId);
+            }
+            //selectNamaLaptop = (String) modelList.getSelectedItem();
+            //laptopId = (Integer) listLaptop.getClientProperty(selectNamaLaptop);
 
-            String selectedItem = (String) listLaptop.getSelectedItem();
-            System.out.println("Item selected in combobox: " + selectedItem);
-            System.out.println(listLaptop.getSelectedIndex());
+            //String selectedItem = (String) listLaptop.getSelectedItem();
+
         });
     }
 
@@ -439,7 +470,7 @@ public class FrameTransaksi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> listLaptop;
+    private javax.swing.JComboBox<ManageLaptop> listLaptop;
     private javax.swing.JTable tableTransaksi;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables

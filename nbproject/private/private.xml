@@ -5,8 +5,6 @@
         <group>
             <file>file:/C:/laragon/www/Laptop/src/laptop/FrameLogin.java</file>
             <file>file:/C:/laragon/www/Laptop/src/laptop/FrameRegister.java</file>
-            <file>file:/C:/laragon/www/Laptop/src/laptop/Koneksi.java</file>
-            <file>file:/C:/laragon/www/Laptop/src/laptop/Transaksi.java</file>
             <file>file:/C:/laragon/www/Laptop/src/laptop/FrameTransaksi.java</file>
             <file>file:/C:/laragon/www/Laptop/src/laptop/FrameCRUD.java</file>
         </group>
