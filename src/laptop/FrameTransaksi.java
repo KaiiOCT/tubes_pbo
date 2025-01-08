@@ -54,56 +54,36 @@ public class FrameTransaksi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableTransaksi = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         inputTanggalSewa = new com.toedter.calendar.JDateChooser();
         inputTanggalKembali = new com.toedter.calendar.JDateChooser();
-        listLaptop = new javax.swing.JComboBox<>(modelList);
+        listLaptop = new JComboBox<ManageLaptop>();
         createButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableTransaksi = new javax.swing.JTable();
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Transaksi");
-
-        jLabel2.setText("Tanggal Sewa");
-
-        jLabel3.setText("Tanggal Kembali");
-
-        jLabel4.setText("Laptop");
-
-        listLaptop.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listLaptopActionPerformed(evt);
-            }
-        });
-
-        createButton.setText("Create");
-        createButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createButtonActionPerformed(evt);
-            }
-        });
-
-        updateButton.setText("Update");
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
-            }
-        });
-
-        deleteButton.setText("Delete");
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
-            }
-        });
 
         tableTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,72 +103,170 @@ public class FrameTransaksi extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableTransaksi);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("Transaksi");
+
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/lets-icons_back.png"))); // NOI18N
+        btnBack.setText("Kembali");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        btnLogout.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 0, 0));
+        btnLogout.setText("Log Out");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addGap(136, 136, 136)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogout)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLogout)
+                    .addComponent(jLabel1)
+                    .addComponent(btnBack))
+                .addContainerGap(10, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setText("Tanggal Sewa");
+
+        jLabel3.setText("Tanggal Kembali");
+
+        jLabel4.setText("Laptop");
+
+        listLaptop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listLaptopActionPerformed(evt);
+            }
+        });
+
+        createButton.setForeground(new java.awt.Color(102, 102, 255));
+        createButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/material-symbols_add.png"))); // NOI18N
+        createButton.setText("Create");
+        createButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createButtonActionPerformed(evt);
+            }
+        });
+
+        updateButton.setForeground(new java.awt.Color(204, 204, 0));
+        updateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/material-symbols_edit-sharp.png"))); // NOI18N
+        updateButton.setText("Update");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+
+        deleteButton.setForeground(new java.awt.Color(255, 0, 0));
+        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/material-symbols_delete-sharp.png"))); // NOI18N
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(createButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteButton))
+                    .addComponent(listLaptop, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputTanggalKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputTanggalSewa, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inputTanggalSewa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inputTanggalKembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(listLaptop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateButton)
+                    .addComponent(createButton)
+                    .addComponent(deleteButton))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(241, 241, 241)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(37, 37, 37)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(39, 39, 39)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(listLaptop, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(inputTanggalKembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(inputTanggalSewa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(36, 36, 36)
-                                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 159, Short.MAX_VALUE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(inputTanggalSewa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(inputTanggalKembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(listLaptop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createButton)
-                    .addComponent(updateButton)
-                    .addComponent(deleteButton))
-                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+
         ManageLaptop selectedItem = (ManageLaptop) listLaptop.getSelectedItem();
         if (selectedItem != null && selectedItem != pilihLaptop) {
             try {
@@ -213,10 +291,10 @@ public class FrameTransaksi extends javax.swing.JFrame {
                     model.setRowCount(0);  // Menghapus semua baris dari model
                     ReadTransaksi();  // Memuat ulang data transaksi ke dalam tabel
                 } catch (SQLException e) {
-                    System.out.println("Gagal update status laptop: " + e.getMessage());
+                    JOptionPane.showMessageDialog(this, "Gagal mengubah status laptop: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 if (transaksi.updateTransaksi()) {
-                    //transaksi.updateTransaksi();
+                    transaksi.updateTransaksi();
                     try {
                         Connection conn = k.getConnection();
                         String query = """
@@ -238,17 +316,20 @@ public class FrameTransaksi extends javax.swing.JFrame {
                         //listLaptop.removeAllItems();;
                         modelList.removeAllElements();
                         DaftarLaptop();
+
+                        JOptionPane.showMessageDialog(this, "Transaksi berhasil disimpan dan status laptop diperbarui!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     } catch (SQLException e) {
-                        System.out.println("Gagal update status laptop: " + e.getMessage());
+                        JOptionPane.showMessageDialog(this, "Gagal mengubah status laptop: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                    System.out.println("Transaksi berhasil disimpan!");
                 } else {
-                    System.err.println("Transaksi gagal disimpan!");
+                    JOptionPane.showMessageDialog(this, "Transaksi gagal disimpan!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Tidak ada laptop yang dipilih!");
-                System.err.println("Error: " + e.getMessage());
+                JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Tidak ada laptop yang dipilih!", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -283,18 +364,18 @@ public class FrameTransaksi extends javax.swing.JFrame {
                         //modelList.removeAllElements();
                         //listLaptop.removeAllItems();
                         DaftarLaptop();
-                        System.out.println("Transaksi berhasil disimpan!");
+                        JOptionPane.showMessageDialog(this, "Transaksi berhasil disimpan!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     } catch (SQLException e) {
-                        System.out.println("Gagal update status laptop: " + e.getMessage());
+                        JOptionPane.showMessageDialog(this, "Gagal mengubah status laptop: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    System.err.println("Transaksi gagal disimpan!");
+                    JOptionPane.showMessageDialog(this, "Transaksi gagal disimpan!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception e) {
-                System.err.println("Error a: " + e.getMessage());
+                JOptionPane.showMessageDialog(this, "Terjadi kesalahan: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Tidak ada laptop yang dipilih!");
+            JOptionPane.showMessageDialog(this, "Tidak ada laptop yang dipilih!", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_createButtonActionPerformed
 
@@ -317,15 +398,16 @@ public class FrameTransaksi extends javax.swing.JFrame {
 
                 ps.executeUpdate();
 
-                System.out.println("Transaksi berhasil dihapus!");
                 model.setRowCount(0);  // Menghapus semua baris dari model
                 ReadTransaksi();  // Memuat ulang data transaksi ke dalam tabel
                 DaftarLaptop();
+
+                JOptionPane.showMessageDialog(this, "Transaksi berhasil dihapus!", "Success", JOptionPane.INFORMATION_MESSAGE);
             } catch (SQLException e) {
-                System.out.println("Gagal update status laptop: " + e.getMessage());
+                JOptionPane.showMessageDialog(this, "Gagal mengubah status laptop: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            System.out.println("Gagal menghapus transaksi.");
+            JOptionPane.showMessageDialog(this, "Transaksi gagal dihapus!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
@@ -359,6 +441,22 @@ public class FrameTransaksi extends javax.swing.JFrame {
         inputTanggalKembali.setDate(tanggalPengembalian);
     }//GEN-LAST:event_tableTransaksiMouseClicked
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.dispose();
+        FrameCRUD frameCrud = new FrameCRUD();
+        frameCrud.setSize(820, 800); // Atur ukuran frameCrud (lebar: 800px, tinggi: 600px)
+        frameCrud.setLocationRelativeTo(null); // Mengatur frameCrud muncul di tengah layar
+        frameCrud.setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        this.dispose();
+        FrameLogin frameLogin = new FrameLogin();
+        frameLogin.setSize(800, 400); // Atur ukuran frameLogin (lebar: 800px, tinggi: 600px)
+        frameLogin.setLocationRelativeTo(null); // Mengatur frameLogin muncul di tengah layar
+        frameLogin.setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
     private void ReadTransaksi() {
         try {
             Connection conn = new Koneksi().getConnection();
@@ -379,7 +477,7 @@ public class FrameTransaksi extends javax.swing.JFrame {
             }
             conn.close();
         } catch (SQLException e) {
-            System.err.println("Gagal memuat data laptop: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Gagal memuat data transaksi: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -406,7 +504,7 @@ public class FrameTransaksi extends javax.swing.JFrame {
             }
 
         } catch (SQLException e) {
-            System.err.println("Gagal memuat kategori: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Gagal memuat data laptop: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         listLaptop.addActionListener(evt -> {
@@ -455,12 +553,17 @@ public class FrameTransaksi extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameTransaksi().setVisible(true);
+                FrameTransaksi frame = new FrameTransaksi();
+                frame.setSize(600, 800); // Atur ukuran frame (lebar: 800px, tinggi: 600px)
+                frame.setLocationRelativeTo(null); // Mengatur frame muncul di tengah layar
+                frame.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton createButton;
     private javax.swing.JButton deleteButton;
     private com.toedter.calendar.JDateChooser inputTanggalKembali;
@@ -469,8 +572,11 @@ public class FrameTransaksi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<ManageLaptop> listLaptop;
+    private JComboBox<ManageLaptop> listLaptop;
     private javax.swing.JTable tableTransaksi;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables

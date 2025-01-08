@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Laptop:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Laptop_jar</output-path>
+    <root id="archive" name="Laptop.jar">
+      <element id="module-output" name="Laptop" />
+      <element id="extracted-dir" path="D:/Kuliah/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/Kuliah/JCalendar/lib/jcalendar-1.4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

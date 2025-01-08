@@ -4,6 +4,7 @@
  */
 package laptop;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 
@@ -45,76 +46,33 @@ public class FrameCRUD extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TableLaptop = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         labelcrud = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        btnLogout = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        labelDeskripsi = new javax.swing.JLabel();
         labelKategori = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         FormNamaLaptop = new javax.swing.JTextField();
         KategoriBox = new javax.swing.JComboBox<>();
+        labelHargaSewa = new javax.swing.JLabel();
+        labelStatus = new javax.swing.JLabel();
+        FormHargaSewa = new javax.swing.JTextField();
+        FormStatus = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        FormDeskripsi = new javax.swing.JTextArea();
         btnCreate = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         FormSearch = new javax.swing.JTextField();
-        FilterLaptopBox = new javax.swing.JComboBox<>();
         btnSearch = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TableLaptop = new javax.swing.JTable();
-        labelDeskripsi = new javax.swing.JLabel();
-        labelHargaSewa = new javax.swing.JLabel();
-        labelStatus = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        FormDeskripsi = new javax.swing.JTextArea();
-        FormHargaSewa = new javax.swing.JTextField();
-        FormStatus = new javax.swing.JComboBox<>();
+        btnTransaksi = new javax.swing.JButton();
+        FilterLaptopBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-
-        labelcrud.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        labelcrud.setText("CRUD Laptop");
-
-        jLabel1.setText("Nama Laptop :");
-
-        labelKategori.setText("Kategori :");
-
-        btnCreate.setText("Create");
-        btnCreate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateActionPerformed(evt);
-            }
-        });
-
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
-        FormSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FormSearchActionPerformed(evt);
-            }
-        });
-
-        FilterLaptopBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FilterLaptopBoxActionPerformed(evt);
-            }
-        });
-
-        btnSearch.setText("Search");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
 
         TableLaptop.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -134,11 +92,70 @@ public class FrameCRUD extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TableLaptop);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        labelcrud.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelcrud.setText("Laptopers");
+
+        btnLogout.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 0, 0));
+        btnLogout.setText("Log Out");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelcrud)
+                .addGap(249, 249, 249)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLogout)
+                    .addComponent(labelcrud))
+                .addContainerGap(10, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
         labelDeskripsi.setText("Deskripsi :");
+
+        labelKategori.setText("Kategori :");
+
+        jLabel1.setText("Nama Laptop :");
+
+        KategoriBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KategoriBoxActionPerformed(evt);
+            }
+        });
 
         labelHargaSewa.setText("Harga Sewa :");
 
         labelStatus.setText("Status :");
+
+        FormHargaSewa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FormHargaSewaActionPerformed(evt);
+            }
+        });
+
+        FormStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FormStatusActionPerformed(evt);
+            }
+        });
 
         FormDeskripsi.setColumns(20);
         FormDeskripsi.setRows(5);
@@ -153,96 +170,161 @@ public class FrameCRUD extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(FormDeskripsi);
 
-        FormHargaSewa.addActionListener(new java.awt.event.ActionListener() {
+        btnCreate.setForeground(new java.awt.Color(153, 153, 255));
+        btnCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/material-symbols_add.png"))); // NOI18N
+        btnCreate.setText("Create");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FormHargaSewaActionPerformed(evt);
+                btnCreateActionPerformed(evt);
             }
         });
 
-        FormStatus.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setForeground(new java.awt.Color(204, 204, 0));
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/material-symbols_edit-sharp.png"))); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FormStatusActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
+
+        btnDelete.setForeground(new java.awt.Color(255, 51, 51));
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/material-symbols_delete-sharp.png"))); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        FormSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FormSearchActionPerformed(evt);
+            }
+        });
+
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/ri_search-line.png"))); // NOI18N
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        btnTransaksi.setText("Transaksi");
+        btnTransaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransaksiActionPerformed(evt);
+            }
+        });
+
+        FilterLaptopBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FilterLaptopBoxActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnCreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnUpdate)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDelete))
+                            .addComponent(btnTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(FormSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSearch))
+                            .addComponent(FilterLaptopBox, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(labelDeskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(labelKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(KategoriBox, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(FormNamaLaptop, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(labelHargaSewa, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(FormStatus, 0, 150, Short.MAX_VALUE)
+                                    .addComponent(FormHargaSewa))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(FormNamaLaptop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelHargaSewa)
+                    .addComponent(FormHargaSewa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelKategori)
+                    .addComponent(KategoriBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelStatus)
+                    .addComponent(FormStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelDeskripsi)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCreate)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnDelete)
+                    .addComponent(FormSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(FilterLaptopBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTransaksi))
+                .addGap(16, 16, 16))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelcrud)
-                .addGap(300, 300, 300))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(labelDeskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(FormNamaLaptop)
-                            .addComponent(KategoriBox, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelHargaSewa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(FormHargaSewa)
-                            .addComponent(FormStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(btnCreate)
-                .addGap(18, 18, 18)
-                .addComponent(btnUpdate)
-                .addGap(18, 18, 18)
-                .addComponent(btnDelete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(FormSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSearch))
-                    .addComponent(FilterLaptopBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(120, 120, 120))
+                .addGap(51, 51, 51)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(labelcrud)
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(FormNamaLaptop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelHargaSewa)
-                    .addComponent(FormHargaSewa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelKategori)
-                    .addComponent(KategoriBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelStatus)
-                    .addComponent(FormStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelDeskripsi)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreate)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete)
-                    .addComponent(FormSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(FilterLaptopBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 24, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -258,22 +340,22 @@ public class FrameCRUD extends javax.swing.JFrame {
             int status = FormStatus.getSelectedIndex();
 
             if (kategori == 0) {
-                System.out.println("Kategori harus dipilih");
+                JOptionPane.showMessageDialog(this, "Kategori harus diisi.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
 
                 manageLaptop = new ManageLaptop(0, nama, kategori, deskripsi, hargaSewa, status);
 
                 if (manageLaptop.insertLaptop()) {
-                    System.out.println("Laptop berhasil disimpan!");
                     model.setRowCount(0);  // Menghapus semua baris dari model
                     ReadLaptop();  // Memuat ulang data laptop ke dalam tabel
+                    JOptionPane.showMessageDialog(this, "Laptop berhasil disimpan!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    System.err.println("Laptop gagal disimpan!");
+                    JOptionPane.showMessageDialog(this, "Gagal menyimpan laptop.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
 
         } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Gagal menyimpan laptop: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnCreateActionPerformed
 
@@ -302,7 +384,7 @@ public class FrameCRUD extends javax.swing.JFrame {
                 }
                 conn.close();
             } catch (SQLException e) {
-                System.err.println("Gagal memuat data laptop berdasarkan kategori: " + e.getMessage());
+                JOptionPane.showMessageDialog(this, "Gagal memfilter laptop: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_FilterLaptopBoxActionPerformed
@@ -311,11 +393,11 @@ public class FrameCRUD extends javax.swing.JFrame {
         manageLaptop.setId(selectedLaptopId);
 
         if (manageLaptop.deleteLaptop()) {
-            System.out.println("Laptop berhasil dihapus!");
             model.setRowCount(0);  // Menghapus semua baris dari model
             ReadLaptop();  // Memuat ulang data laptop ke dalam tabel
+            JOptionPane.showMessageDialog(this, "Laptop berhasil dihapus.", "Success", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            System.out.println("Gagal menghapus laptop.");
+            JOptionPane.showMessageDialog(this, "Gagal menghapus laptop.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -351,12 +433,12 @@ public class FrameCRUD extends javax.swing.JFrame {
 
             // Validasi input
             if (selectedLaptopId == 0) {
-                System.out.println("Pilih laptop dari tabel terlebih dahulu!");
+                JOptionPane.showMessageDialog(this, "Pilih laptop yang akan diperbarui.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             if (kategoriIndex == 0 || namaLaptop.isEmpty()) {
-                System.out.println("Nama laptop dan kategori tidak boleh kosong.");
+                JOptionPane.showMessageDialog(this, "Nama laptop dan kategori harus diisi.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -364,14 +446,14 @@ public class FrameCRUD extends javax.swing.JFrame {
             manageLaptop = new ManageLaptop (selectedLaptopId, namaLaptop, kategoriIndex, deskripsi, hargaSewa, status);
 
             if (manageLaptop.updateLaptop()) {
-                System.out.println("Laptop berhasil diperbarui!");
                 model.setRowCount(0);
                 ReadLaptop();
+                JOptionPane.showMessageDialog(this, "Laptop berhasil diperbarui.", "Success", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                System.out.println("Gagal memperbarui laptop.");
+                JOptionPane.showMessageDialog(this, "Gagal memperbarui laptop.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
-            System.err.println("Error saat memperbarui laptop: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Gagal memperbarui laptop: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -405,7 +487,7 @@ public class FrameCRUD extends javax.swing.JFrame {
 
             conn.close();
         } catch (SQLException e) {
-            System.err.println("Gagal memuat data laptop: " + e.getMessage());
+           JOptionPane.showMessageDialog(this, "Gagal mencari laptop: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -420,6 +502,26 @@ public class FrameCRUD extends javax.swing.JFrame {
     private void FormStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormStatusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FormStatusActionPerformed
+
+    private void KategoriBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KategoriBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KategoriBoxActionPerformed
+
+    private void btnTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaksiActionPerformed
+        this.dispose();
+        FrameTransaksi frameTransaksi = new FrameTransaksi();
+        frameTransaksi.setSize(600, 800); // Atur ukuran frameTransaksi (lebar: 800px, tinggi: 600px)
+        frameTransaksi.setLocationRelativeTo(null); // Mengatur frameTransaksi muncul di tengah layar
+        frameTransaksi.setVisible(true);
+    }//GEN-LAST:event_btnTransaksiActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        this.dispose();
+        FrameLogin frameLogin = new FrameLogin();
+        frameLogin.setSize(800, 400); // Atur ukuran frameLogin (lebar: 800px, tinggi: 600px)
+        frameLogin.setLocationRelativeTo(null); // Mengatur frameLogin muncul di tengah layar
+        frameLogin.setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
 
     private void ReadLaptop() {
@@ -442,7 +544,7 @@ public class FrameCRUD extends javax.swing.JFrame {
             }
             conn.close();
         } catch (SQLException e) {
-            System.err.println("Gagal memuat data laptop: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Gagal memuat data laptop: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     private void KategoriLaptop() {
@@ -463,7 +565,7 @@ public class FrameCRUD extends javax.swing.JFrame {
 
             conn.close();
         } catch (SQLException e) {
-            System.err.println("Gagal memuat kategori: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Gagal memuat kategori: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -483,7 +585,7 @@ public class FrameCRUD extends javax.swing.JFrame {
 
             conn.close();
         } catch (SQLException e) {
-            System.err.println("Gagal memuat status: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Gagal memuat status: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -517,7 +619,10 @@ public class FrameCRUD extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameCRUD().setVisible(true);
+                FrameCRUD frame = new FrameCRUD();
+                frame.setSize(820, 800); // Atur ukuran frame (lebar: 800px, tinggi: 600px)
+                frame.setLocationRelativeTo(null); // Mengatur frame muncul di tengah layar
+                frame.setVisible(true);
             }
         });
     }
@@ -533,9 +638,13 @@ public class FrameCRUD extends javax.swing.JFrame {
     private javax.swing.JTable TableLaptop;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnTransaksi;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelDeskripsi;

@@ -4,6 +4,8 @@
  */
 package laptop;
 
+import javax.swing.*;
+
 /**
  *
  * @author Faris Rizky R
@@ -160,20 +162,32 @@ public class FrameLogin extends javax.swing.JFrame {
         String username = FormUsername.getText();
         String password = new String(FormPassword.getPassword());
 
+        if(username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username dan Password tidak boleh kosong!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         user = new User(username, password);
         user.setNama(username);
         user.setPassword(password);
 
         if(User.login(username, password)) {
-            this.setVisible(false);
-            FrameCRUD frameCRUD = new FrameCRUD();
-            frameCRUD.setVisible(true);
+            JOptionPane.showMessageDialog(this, "Login Berhasil!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+            FrameCRUD frameCrud = new FrameCRUD();
+            frameCrud.setSize(820, 800); // Atur ukuran frameCrud (lebar: 800px, tinggi: 600px)
+            frameCrud.setLocationRelativeTo(null); // Mengatur frameCrud muncul di tengah layar
+            frameCrud.setVisible(true);
+        } else{
+            JOptionPane.showMessageDialog(this, "Login Gagal!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnLinkRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLinkRegisterActionPerformed
-        this.setVisible(false);
+        this.dispose();
         FrameRegister frameRegister = new FrameRegister();
+        frameRegister.setSize(800, 400); // Atur ukuran frameRegister (lebar: 800px, tinggi: 600px)
+        frameRegister.setLocationRelativeTo(null); // Mengatur frameRegister muncul di tengah layar
         frameRegister.setVisible(true);
     }//GEN-LAST:event_btnLinkRegisterActionPerformed
 
@@ -207,7 +221,10 @@ public class FrameLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameLogin().setVisible(true);
+                FrameLogin frame = new FrameLogin();
+                frame.setSize(800, 400); // Atur ukuran frame (lebar: 800px, tinggi: 600px)
+                frame.setLocationRelativeTo(null); // Mengatur frame muncul di tengah layar
+                frame.setVisible(true);
             }
         });
     }
