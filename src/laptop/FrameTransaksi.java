@@ -34,6 +34,7 @@ public class FrameTransaksi extends javax.swing.JFrame {
      */
     public FrameTransaksi() {
         initComponents();
+        transaksi = new Transaksi(0, null, null, 0);
 
         listLaptop.setModel(modelList);
         //listLaptop.getModel().getElementAt(0);
