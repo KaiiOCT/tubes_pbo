@@ -42,6 +42,9 @@ public class FrameTransaksi extends javax.swing.JFrame {
         tableTransaksi.getColumnModel().getColumn(0).setMinWidth(0);
         tableTransaksi.getColumnModel().getColumn(0).setMaxWidth(0);
         tableTransaksi.getColumnModel().getColumn(0).setWidth(0);
+        tableTransaksi.getColumnModel().getColumn(5).setMinWidth(0);
+        tableTransaksi.getColumnModel().getColumn(5).setMaxWidth(0);
+        tableTransaksi.getColumnModel().getColumn(5).setWidth(0);
         ReadTransaksi();
         DaftarLaptop();
     }
